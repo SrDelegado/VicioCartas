@@ -1,9 +1,12 @@
 @extends('plantilla')
 
-@section('titulo', 'Inicio')
+@section('titulo', 'Bienvenido')
 
 @section('contenido')
-    <h1>¡Bienvenido a CardMaster!</h1>
-    <p>Empieza con 100€ y completa tu colección abriendo sobres.</p>
-    <a href="{{ route('tienda.index') }}" class="btn btn-primary">Ir a la Tienda</a>
+    <div class="text-center">
+        <h1 class="display-4">¡Bienvenido al Desafío de los Sobres!</h1>
+        <p class="lead">Tienes 100€ para empezar tu colección. ¿Te sientes con suerte?</p>
+        <hr>
+        <a href="{{ route('tienda.index') }}" class="btn btn-primary btn-lg">Ir a la Tienda</a>
+    </div>
 @endsection

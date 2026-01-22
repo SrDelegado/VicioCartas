@@ -1,0 +1,30 @@
+// Importar fuentes o variables de Bootstrap si quieres
+@import 'bootstrap/scss/bootstrap';
+
+// Estilos personalizados para CardMaster
+body {
+    background-color: #1a1a2e; // Un fondo oscuro tipo videojuego
+    color: #ffffff;
+}
+
+.card-pack {
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    background: #16213e;
+    border: 2px solid #0f3460;
+
+    &:hover {
+        transform: translateY(-10px); // Efecto de levitación al pasar el ratón
+        box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    }
+}
+
+// Colores para las rarezas de los sobres
+.pack-bronce { border-color: #cd7f32; }
+.pack-oro { border-color: #ffd700; box-shadow: 0 0 10px rgba(255, 215, 0, 0.3); }
+.pack-epico { border-color: #a335ee; box-shadow: 0 0 15px rgba(163, 53, 238, 0.4); }
+
+.saldo-display {
+    font-size: 1.5rem;
+    text-shadow: 0 0 5px #ffc107;
+}
