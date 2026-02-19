@@ -8,47 +8,54 @@
     <style>
         body { background-color: #1a1a2e; color: #ffffff; min-height: 100vh; }
         .navbar { background-color: #0f3460 !important; }
-        .alert { position: fixed; top: 20px; right: 20px; z-index: 1000; min-width: 300px; }
+        .grayscale { filter: grayscale(100%); }
     </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark shadow mb-4">
         <div class="container">
             <a class="navbar-brand fw-bold" href="{{ route('inicio') }}">🃏 CardMaster</a>
-            <div class="navbar-nav ms-auto align-items-center">
-                @auth
-                    <span class="nav-link text-warning fw-bold fs-5 me-3" id="saldo-display">
-                        💰 {{ Auth::user()->wallet }}€
-                    </span>
-                    <a href="{{ route('logout') }}" class="btn btn-sm btn-outline-danger ms-2">Salir</a>
-                @else
-                    <a href="{{ route('login') }}" class="btn btn-sm btn-warning fw-bold">Entrar / Registro</a>
-                @endauth
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link" href="{{ route('tienda.index') }}">Tienda</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('album.index') }}">Mi Álbum</a></li>
+                </ul>
+                <div class="navbar-nav ms-auto align-items-center">
+                    @auth
+                        <span class="nav-link text-warning fw-bold fs-5 me-3" id="saldo-display">
+                            💰 {{ Auth::user()->wallet }}€
+                        </span>
+                        <span class="text-light me-2">Hola, <strong>{{ Auth::user()->name }}</strong></span>
+                        <a href="{{ route('logout') }}" class="btn btn-sm btn-outline-danger ms-2">Salir</a>
+                    @else
+                        <a href="{{ route('login') }}" class="btn btn-sm btn-warning fw-bold">Entrar / Registrarse</a>
+                    @endauth
+                </div>
             </div>
         </div>
     </nav>
 
     <div class="container">
         @if(session('success'))
-            <div class="alert alert-success alert-dismissible fade show shadow-lg" role="alert">
-                <strong>¡Genial!</strong> {{ session('success') }}
+            <div class="alert alert-success alert-dismissible fade show border-0 shadow" role="alert">
+                {{ session('success') }}
                 <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
             </div>
         @endif
-
-        @if(session('error') || $errors->any())
-            <div class="alert alert-danger alert-dismissible fade show shadow-lg" role="alert">
-                <strong>¡Vaya!</strong> {{ session('error') ?? 'Revisa los datos del formulario.' }}
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
+        @if(session('error'))
+            <div class="alert alert-danger alert-dismissible fade show border-0 shadow" role="alert">
+                {{ session('error') }}
                 <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
             </div>
         @endif
-
         @yield('contenido')
     </div>
+
+    <footer class="text-center py-4 mt-5 text-secondary">
+        <small>&copy; 2026 CardMaster Game</small>
+    </footer>
 </body>
 </html>
