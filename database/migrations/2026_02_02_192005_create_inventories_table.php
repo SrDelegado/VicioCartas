@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('inventories', function (Blueprint $table) {
             $table->id();
-            // Estas dos líneas son fundamentales para que el botón "Coleccionar" funcione:
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('card_id')->constrained()->onDelete('cascade');
             $table->timestamps();
